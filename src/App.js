@@ -12,15 +12,26 @@ function App() {
     document.body.setAttribute("data-theme", isDarkMode ? "dark" : "light");
   }, [isDarkMode]);
 
-  // Mock function (replace with real API call later)
-  const handleShorten = () => {
+  const handleShorten = async () => {
     if (!inputUrl.trim()) return;
-
     setIsLoading(true);
-    setTimeout(() => {
-      setShortUrl(`swftlnk.xyz/${Math.random().toString(36).slice(2, 8)}`);
+
+    const backendUrl =
+      process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
+
+    try {
+      const res = await fetch(`${backendUrl}/api/shorten`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ longUrl: inputUrl }),
+      });
+      const data = await res.json();
+      setShortUrl(data.shortUrl);
+    } catch (err) {
+      alert("Failed to shorten URL");
+    } finally {
       setIsLoading(false);
-    }, 1500); // Simulate API delay
+    }
   };
 
   const handleCopy = () => {
