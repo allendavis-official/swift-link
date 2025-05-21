@@ -8,3 +8,23 @@ $error: #dc2626; // Red (warnings)
 // Breakpoints
 $mobile: 576px;
 $tablet: 768px;
+
+// Light Theme (default)
+$light-bg: #f8fafc;
+$light-text: #1e293b;
+$light-card: #ffffff;
+
+// Dark Theme
+$dark-bg: #0f172a;
+$dark-text: #f8fafc;
+$dark-card: #1e293b;
+
+// Dynamic variables (will toggle these)
+:root {
+  --bg: #{$light-bg};
+  --text: #{$light-text};
+  --card: #{$light-card};
+}
+
+$logo-light: #2563eb; // Vibrant blue (light mode)
+$logo-dark: #60a5fa; // Lighter blue (dark mode)

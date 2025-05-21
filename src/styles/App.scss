@@ -5,7 +5,11 @@
 // Main container
 .app {
   min-height: 100vh;
+  display: flex; // Add this
+  flex-direction: column; // Stack children vertically
+  align-items: center; // Center horizontally
   padding: 2rem;
+  text-align: center; // Center text elements
 
   @media (min-width: $tablet) {
     padding: 3rem;
@@ -58,4 +62,88 @@
   svg {
     filter: drop-shadow(0 2px 4px rgba(37, 99, 235, 0.2));
   }
+  h1 {
+    color: var(--logo-color); // Dynamic color
+    transition: color 0.3s ease;
+  }
+
+  svg path {
+    stroke: var(--logo-color); // Adapts SVG too!
+  }
+}
+.url-form {
+  &__button {
+    transition: all 0.2s ease;
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 8px rgba(37, 99, 235, 0.2);
+    }
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  &__input {
+    transition: border 0.2s ease;
+    &:focus {
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+  }
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.result-card {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+
+  a {
+    color: $primary;
+    word-break: break-all;
+  }
+
+  button {
+    margin-top: 1rem;
+    background: $light;
+    color: $dark;
+  }
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 10;
+}
+
+[data-theme="dark"] {
+  --bg: #{$dark-bg};
+  --text: #{$dark-text};
+  --card: #{$dark-card};
+  --logo-color: #{$logo-dark}; // Lighter blue in dark mode
+}
+
+[data-theme="light"] {
+  --logo-color: #{$logo-light}; // Original blue in light mode
 }
