@@ -1,0 +1,17 @@
+@use "variables" as *; // Add this line at the top
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", system-ui, sans-serif; // Modern font
+}
+
+h1 {
+  font-size: 2rem;
+  color: $dark;
+  margin-bottom: 1rem;
+}
